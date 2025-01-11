@@ -6,63 +6,61 @@ generator client {
 }
 
 datasource db {
-    provider = "mongodb"
-    url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  name                  String
-  phone                 String
-  email                 String  @unique
-  password              String
-  created_at            DateTime @default(now())
-  updated_at            DateTime @updatedAt
-  user_type             UserType
-  homes                 Home[]
-  buyer_messages        Message[] @relation("buyer_messages")
-  realtor_messages      Message[] @relation("realtor_messages")
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  phone            String
+  email            String    @unique
+  password         String
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+  user_type        UserType
+  homes            Home[]
+  buyer_messages   Message[] @relation("buyer_messages")
+  realtor_messages Message[] @relation("realtor_messages")
 }
 
 model Home {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  address               String
-  number_of_bedrooms    Int
-  number_of_bathrooms   Float
-  city                  String
-  listed_date           DateTime @default(now())
-  price                 Float
-  land_size             Float
-  propertyType          PropertyType
-  created_at            DateTime @default(now())
-  updated_at            DateTime @updatedAt
-  images                Image[]
-  realtor_id            String      @db.ObjectId
-  realtor               User        @relation(fields: [realtor_id], references: [id])
-  
- 
-  
-  messages              Message[]
+  id                  String       @id @default(auto()) @map("_id") @db.ObjectId
+  address             String
+  number_of_bedrooms  Int
+  number_of_bathrooms Float
+  city                String
+  listed_date         DateTime     @default(now())
+  price               Float
+  land_size           Float
+  propertyType        PropertyType
+  created_at          DateTime     @default(now())
+  updated_at          DateTime     @updatedAt
+  images              Image[]
+  realtor_id          String       @db.ObjectId
+  realtor             User         @relation(fields: [realtor_id], references: [id])
+
+  messages Message[]
 }
 
 model Image {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  url                   String
-  created_at            DateTime @default(now())
-  updated_at            DateTime @updatedAt
-  home_id               String      @db.ObjectId
-  home                  Home @relation(fields: [home_id], references: [id])
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  url        String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  home_id    String   @db.ObjectId
+  home       Home     @relation(fields: [home_id], references: [id])
 }
 
 model Message {
-  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-  message               String
-  home_id               String      @db.ObjectId
-  home                  Home @relation(fields: [home_id], references: [id])
-  realtor_id            String      @db.ObjectId
-  realtor               User @relation("buyer_messages", fields: [realtor_id], references: [id])
-  buyer_id              String      @db.ObjectId
-  buyer                 User @relation("realtor_messages", fields: [buyer_id], references: [id])
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  message    String
+  home_id    String @db.ObjectId
+  home       Home   @relation(fields: [home_id], references: [id])
+  realtor_id String @db.ObjectId
+  realtor    User   @relation("buyer_messages", fields: [realtor_id], references: [id])
+  buyer_id   String @db.ObjectId
+  buyer      User   @relation("realtor_messages", fields: [buyer_id], references: [id])
 }
 
 enum PropertyType {
@@ -81,12 +79,52 @@ enum UserType {
 // id = 2    address = 102 QUEEN STREET UNIT#PH17
 // id = 3    address = 103 QUEEN STREET UNIT#PH17
 
-
 // IMAGES
 // id = 1    url = url1     home_id = 1
 // id = 2    url = url2     home_id = 1
 // id = 3    url = url3     home_id = 2
 // id = 4    url = url4     home_id = 3
 
+/**
+ * ---------------------------------------------------------------------------------
+ */
+/**
+ * --------------------   Mine Codes & Schemas      --------------------------------
+ */
+/**
+ * ---------------------------------------------------------------------------------
+ */
 
+model Person {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  name          String        @unique
+  email         String
+  phone         String
+  // Relation field: A person can reserve multiple rooms
+  reservedRooms Appointment[] @relation("PersonRooms")
+}
 
+model Room {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  location     String
+  appointments Appointment[] @relation("RoomAppointments")
+}
+
+model Appointment {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  reserved_by_id String @db.ObjectId // Foreign key pointing to Person
+  reserved_by    Person @relation("PersonRooms", fields: [reserved_by_id], references: [id])
+  room           Room   @relation("RoomAppointments", fields: [id], references: [id])
+}
+
+/**
+ * const personWithRooms = await prisma.person.findUnique({
+ * where: { id: "personId" },
+ * include: { reservedRooms: true },
+ * });
+ * const roomWithPerson = await prisma.room.findUnique({
+ * where: { id: "roomId" },
+ * include: { reserved_by: true },
+ * });
+ */
