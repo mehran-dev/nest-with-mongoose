@@ -152,40 +152,24 @@ export class HomeService {
 
     const updatedHome = await this.prismaService.home.update({
       where: {
-<<<<<<< HEAD
         id: id.toString(),
       },
       data,
     });
     // @ts-ignore
-=======
-        id,
-      },
-      data,
-    });
-
->>>>>>> 7c129a1 (init::fire:it has been started)
     return new HomeResponseDto(updatedHome);
   }
 
   async deleteHomeById(id: number) {
     await this.prismaService.image.deleteMany({
       where: {
-<<<<<<< HEAD
         home_id: id.toString(),
-=======
-        home_id: id,
->>>>>>> 7c129a1 (init::fire:it has been started)
       },
     });
 
     await this.prismaService.home.delete({
       where: {
-<<<<<<< HEAD
         id: id.toString(),
-=======
-        id,
->>>>>>> 7c129a1 (init::fire:it has been started)
       },
     });
   }
@@ -193,11 +177,7 @@ export class HomeService {
   async getRealtorByHomeId(id: number) {
     const home = await this.prismaService.home.findUnique({
       where: {
-<<<<<<< HEAD
         id: id.toString(),
-=======
-        id,
->>>>>>> 7c129a1 (init::fire:it has been started)
       },
       select: {
         realtor: {
@@ -224,13 +204,8 @@ export class HomeService {
     return this.prismaService.message.create({
       data: {
         realtor_id: realtor.id,
-<<<<<<< HEAD
         buyer_id: buyer.id.toString(),
         home_id: homeId.toString(),
-=======
-        buyer_id: buyer.id,
-        home_id: homeId,
->>>>>>> 7c129a1 (init::fire:it has been started)
         message,
       },
     });
@@ -239,11 +214,7 @@ export class HomeService {
   getMessagesByHome(homeId: number) {
     return this.prismaService.message.findMany({
       where: {
-<<<<<<< HEAD
         home_id: homeId.toString(),
-=======
-        home_id: homeId,
->>>>>>> 7c129a1 (init::fire:it has been started)
       },
       select: {
         message: true,

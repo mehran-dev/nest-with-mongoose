@@ -50,38 +50,24 @@ model Home {
   created_at            DateTime @default(now())
   updated_at            DateTime @updatedAt
   images                Image[]
-<<<<<<< HEAD
   realtor_id            String      @db.ObjectId
   realtor               User        @relation(fields: [realtor_id], references: [id])
   
  
   
-=======
-  realtor_id            Int
-  realtor               User @relation(fields: [realtor_id], references: [id])
->>>>>>> 7c129a1 (init::fire:it has been started)
   messages              Message[]
 }
 
 model Image {
-<<<<<<< HEAD
   id                    String   @id @default(auto()) @map("_id") @db.ObjectId
   url                   String
   created_at            DateTime @default(now())
   updated_at            DateTime @updatedAt
   home_id               String      @db.ObjectId
-=======
-  id                    Int   @id @default(autoincrement())
-  url                   String
-  created_at            DateTime @default(now())
-  updated_at            DateTime @updatedAt
-  home_id               Int
->>>>>>> 7c129a1 (init::fire:it has been started)
   home                  Home @relation(fields: [home_id], references: [id])
 }
 
 model Message {
-<<<<<<< HEAD
   id                    String   @id @default(auto()) @map("_id") @db.ObjectId
   message               String
   home_id               String      @db.ObjectId
@@ -89,15 +75,6 @@ model Message {
   realtor_id            String      @db.ObjectId
   realtor               User @relation("buyer_messages", fields: [realtor_id], references: [id])
   buyer_id              String      @db.ObjectId
-=======
-  id                    Int   @id @default(autoincrement())
-  message               String
-  home_id               Int
-  home                  Home @relation(fields: [home_id], references: [id])
-  realtor_id            Int
-  realtor               User @relation("buyer_messages", fields: [realtor_id], references: [id])
-  buyer_id              Int
->>>>>>> 7c129a1 (init::fire:it has been started)
   buyer                 User @relation("realtor_messages", fields: [buyer_id], references: [id])
 }
 

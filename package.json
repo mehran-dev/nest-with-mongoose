@@ -24,22 +24,14 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-<<<<<<< HEAD
     "@prisma/client": "^3.15.2",
-=======
-    "@prisma/client": "^3.9.0",
->>>>>>> 7c129a1 (init::fire:it has been started)
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^8.5.8",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "jsonwebtoken": "^8.5.1",
-<<<<<<< HEAD
     "prisma": "^3.15.2",
-=======
-    "prisma": "^3.9.0",
->>>>>>> 7c129a1 (init::fire:it has been started)
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
