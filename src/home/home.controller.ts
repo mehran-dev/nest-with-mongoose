@@ -22,12 +22,38 @@ import {
 import { HomeService } from './home.service';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { Roles } from 'src/decorators/roles.decorator';
+import { ApiProperty, ApiQuery, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('home')
 @Controller('home')
 export class HomeController {
   constructor(private readonly homeService: HomeService) {}
 
   @Get()
+  @ApiQuery({
+    name: 'city',
+    required: false,
+    type: String,
+    description: 'Filter by city',
+  })
+  @ApiQuery({
+    name: 'minPrice',
+    required: false,
+    type: String,
+    description: 'Minimum price',
+  })
+  @ApiQuery({
+    name: 'maxPrice',
+    required: false,
+    type: String,
+    description: 'Maximum price',
+  })
+  @ApiQuery({
+    name: 'propertyType',
+    required: false,
+    enum: PropertyType,
+    description: 'Type of property',
+  })
   getHomes(
     @Query('city') city?: string,
     @Query('minPrice') minPrice?: string,

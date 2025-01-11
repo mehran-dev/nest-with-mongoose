@@ -40,7 +40,7 @@ export class AuthService {
       data: {
         email,
         name,
-        phone: '021-55524130',
+        phone: phone,
         password: hashedPassword,
         user_type: userType,
       },

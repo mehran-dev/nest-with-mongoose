@@ -86,39 +86,48 @@ export class HomeResponseDto {
 }
 
 class Image {
+  @ApiProperty({ description: 'The name of the example' })
   @IsString()
   @IsNotEmpty()
   url: string;
 }
 
 export class CreateHomeDto {
+  @ApiProperty({ description: 'The name of the example' })
   @IsString()
   @IsNotEmpty()
   address: string;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsNumber()
   @IsPositive()
   numberOfBedrooms: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsNumber()
   @IsPositive()
   numberOfBathrooms: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsString()
   @IsNotEmpty()
   city: string;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsNumber()
   @IsPositive()
   price: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsNumber()
   @IsPositive()
   landSize: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsEnum(PropertyType)
   propertyType: PropertyType;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Image)
@@ -126,42 +135,50 @@ export class CreateHomeDto {
 }
 
 export class UpdateHomeDto {
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   address?: string;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsNumber()
   @IsPositive()
   numberOfBedrooms?: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsNumber()
   @IsPositive()
   numberOfBathrooms?: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   city?: string;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsNumber()
   @IsPositive()
   price?: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsNumber()
   @IsPositive()
   landSize?: number;
 
+  @ApiProperty({ description: 'The name of the example' })
   @IsOptional()
   @IsEnum(PropertyType)
   propertyType?: PropertyType;
 }
 
 export class InquireDto {
+  @ApiProperty({ description: 'The name of the example' })
   @IsString()
   @IsNotEmpty()
   message: string;
