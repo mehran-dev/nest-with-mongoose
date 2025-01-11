@@ -101,8 +101,8 @@ model Person {
   email          String
   phone          String
   // Relation field: A person can reserve multiple rooms
-  reservedRooms  Appointment[] @relation("PersonRooms")
   appointment_id String        @db.ObjectId
+  appointments   Appointment[] @relation("PersonRooms")
   // Appointment    Appointment[] @relation("RoomAppointments", fields: [appointment_id], references: [id])
 }
 
@@ -124,8 +124,7 @@ model Appointment {
   updated_at     DateTime
   start_time     String
   end_time       String
-
-  person_id String? @db.ObjectId
+  person_id      String?  @db.ObjectId
   // Person   Person? @relation(fields: [person_id], references: [id])
 }
 
