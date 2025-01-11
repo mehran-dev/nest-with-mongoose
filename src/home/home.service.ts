@@ -152,24 +152,24 @@ export class HomeService {
 
     const updatedHome = await this.prismaService.home.update({
       where: {
-        id,
+        id: id.toString(),
       },
       data,
     });
-
+    // @ts-ignore
     return new HomeResponseDto(updatedHome);
   }
 
   async deleteHomeById(id: number) {
     await this.prismaService.image.deleteMany({
       where: {
-        home_id: id,
+        home_id: id.toString(),
       },
     });
 
     await this.prismaService.home.delete({
       where: {
-        id,
+        id: id.toString(),
       },
     });
   }
@@ -177,7 +177,7 @@ export class HomeService {
   async getRealtorByHomeId(id: number) {
     const home = await this.prismaService.home.findUnique({
       where: {
-        id,
+        id: id.toString(),
       },
       select: {
         realtor: {
@@ -204,8 +204,8 @@ export class HomeService {
     return this.prismaService.message.create({
       data: {
         realtor_id: realtor.id,
-        buyer_id: buyer.id,
-        home_id: homeId,
+        buyer_id: buyer.id.toString(),
+        home_id: homeId.toString(),
         message,
       },
     });
@@ -214,7 +214,7 @@ export class HomeService {
   getMessagesByHome(homeId: number) {
     return this.prismaService.message.findMany({
       where: {
-        home_id: homeId,
+        home_id: homeId.toString(),
       },
       select: {
         message: true,

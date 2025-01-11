@@ -40,7 +40,7 @@ export class AuthService {
       data: {
         email,
         name,
-        phone,
+        phone: '021-55524130',
         password: hashedPassword,
         user_type: userType,
       },
@@ -71,7 +71,7 @@ export class AuthService {
     return this.generateJWT(user.name, user.id);
   }
 
-  private generateJWT(name: string, id: number) {
+  private generateJWT(name: string, id: string) {
     return jwt.sign(
       {
         name,
