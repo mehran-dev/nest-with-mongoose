@@ -103,7 +103,6 @@ model Person {
   // Relation field: A person can reserve multiple rooms
   appointment_id String        @db.ObjectId
   appointments   Appointment[] @relation("PersonRooms")
-  // Appointment    Appointment[] @relation("RoomAppointments", fields: [appointment_id], references: [id])
 }
 
 model Room {
@@ -111,6 +110,7 @@ model Room {
   name         String
   location     String
   appointments Appointment[] @relation("RoomAppointments")
+  personId     String        @db.ObjectId
 }
 
 model Appointment {
