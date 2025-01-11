@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,18 @@ async function bootstrap() {
       },
     }),
   );
+
+  // Swagger configuration
+  const config = new DocumentBuilder()
+    .setTitle('API Documentation')
+    .setDescription('The API description for my project')
+    .setVersion('1.0')
+    .addTag('example') // Optional: Add tags
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document); // Access Swagger at /api
+
   await app.listen(8000);
 }
 bootstrap();

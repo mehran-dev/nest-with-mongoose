@@ -12,7 +12,9 @@ import { GenerateProductKeyDto, SigninDto, SignupDto } from '../dtos/auth.dto';
 import { AuthService } from './auth.service';
 import * as bcrypt from 'bcryptjs';
 import { User, UserInfo } from '../decorators/user.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('example') // Tag for Swagger grouping
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
