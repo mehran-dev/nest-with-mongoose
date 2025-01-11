@@ -13,6 +13,10 @@ async function bootstrap() {
       },
     }),
   );
+<<<<<<< HEAD
   await app.listen(8000);
+=======
+  await app.listen(3000);
+>>>>>>> 7c129a1 (init::fire:it has been started)
 }
 bootstrap();

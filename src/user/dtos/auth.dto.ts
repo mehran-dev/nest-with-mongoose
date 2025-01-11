@@ -14,9 +14,15 @@ export class SignupDto {
   @IsNotEmpty()
   name: string;
 
+<<<<<<< HEAD
   /*  @Matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, {
     message: 'phone must be a valid phone number',
   }) */
+=======
+  @Matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, {
+    message: 'phone must be a valid phone number',
+  })
+>>>>>>> 7c129a1 (init::fire:it has been started)
   phone: string;
 
   @IsEmail()

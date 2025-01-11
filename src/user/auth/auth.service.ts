@@ -40,7 +40,11 @@ export class AuthService {
       data: {
         email,
         name,
+<<<<<<< HEAD
         phone: '021-55524130',
+=======
+        phone,
+>>>>>>> 7c129a1 (init::fire:it has been started)
         password: hashedPassword,
         user_type: userType,
       },
@@ -71,7 +75,11 @@ export class AuthService {
     return this.generateJWT(user.name, user.id);
   }
 
+<<<<<<< HEAD
   private generateJWT(name: string, id: string) {
+=======
+  private generateJWT(name: string, id: number) {
+>>>>>>> 7c129a1 (init::fire:it has been started)
     return jwt.sign(
       {
         name,
