@@ -96,12 +96,14 @@ enum UserType {
  */
 
 model Person {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  name          String        @unique
-  email         String
-  phone         String
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  name           String        @unique
+  email          String
+  phone          String
   // Relation field: A person can reserve multiple rooms
-  reservedRooms Appointment[] @relation("PersonRooms")
+  reservedRooms  Appointment[] @relation("PersonRooms")
+  appointment_id String        @db.ObjectId
+  // Appointment    Appointment[] @relation("RoomAppointments", fields: [appointment_id], references: [id])
 }
 
 model Room {
@@ -112,10 +114,19 @@ model Room {
 }
 
 model Appointment {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  reserved_by_id String @db.ObjectId // Foreign key pointing to Person
-  reserved_by    Person @relation("PersonRooms", fields: [reserved_by_id], references: [id])
-  room           Room   @relation("RoomAppointments", fields: [id], references: [id])
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  reserved_by_id String   @db.ObjectId // Foreign key pointing to Person
+  reserved_by    Person   @relation("PersonRooms", fields: [reserved_by_id], references: [id])
+  room_id        String   @db.ObjectId
+  room           Room     @relation("RoomAppointments", fields: [room_id], references: [id])
+  date           DateTime
+  created_at     DateTime
+  updated_at     DateTime
+  start_time     String
+  end_time       String
+
+  person_id String? @db.ObjectId
+  // Person   Person? @relation(fields: [person_id], references: [id])
 }
 
 /**
