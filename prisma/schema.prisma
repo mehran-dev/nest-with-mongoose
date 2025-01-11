@@ -6,21 +6,12 @@ generator client {
 }
 
 datasource db {
-<<<<<<< HEAD
     provider = "mongodb"
     url      = env("DATABASE_URL")
 }
 
 model User {
   id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-=======
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-model User {
-  id                    Int   @id @default(autoincrement())
->>>>>>> 7c129a1 (init::fire:it has been started)
   name                  String
   phone                 String
   email                 String  @unique
@@ -34,11 +25,7 @@ model User {
 }
 
 model Home {
-<<<<<<< HEAD
   id                    String   @id @default(auto()) @map("_id") @db.ObjectId
-=======
-  id                    Int   @id @default(autoincrement())
->>>>>>> 7c129a1 (init::fire:it has been started)
   address               String
   number_of_bedrooms    Int
   number_of_bathrooms   Float
