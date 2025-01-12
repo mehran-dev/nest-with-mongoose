@@ -40,7 +40,9 @@ export class AuthController {
         throw new UnauthorizedException();
       }
     }
-
+    console.log('====================================');
+    console.log(body);
+    console.log('====================================');
     return this.authService.signup(body, userType);
   }
 

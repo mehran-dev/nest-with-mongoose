@@ -20,6 +20,7 @@ export class SignupDto {
     message: 'phone must be a valid phone number',
     }) */
   @ApiProperty({ description: 'The name of the example' })
+  @IsNotEmpty()
   phone: string;
 
   @ApiProperty({ description: 'The name of the example' })
