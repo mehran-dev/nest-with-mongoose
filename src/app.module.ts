@@ -7,9 +7,11 @@ import { HomeModule } from './home/home.module';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { UserInterceptor } from './user/interceptors/user.interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { RoomService } from './room/room.service';
+import { RoomModule } from './room/room.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, HomeModule],
+  imports: [UserModule, PrismaModule, HomeModule, RoomModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -21,6 +23,7 @@ import { AuthGuard } from './guards/auth.guard';
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
+    RoomService,
   ],
 })
 export class AppModule {}

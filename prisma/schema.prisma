@@ -85,15 +85,15 @@ enum UserType {
 // id = 3    url = url3     home_id = 2
 // id = 4    url = url4     home_id = 3
 
-/**
- * ---------------------------------------------------------------------------------
- */
-/**
- * --------------------   Mine Codes & Schemas      --------------------------------
- */
-/**
- * ---------------------------------------------------------------------------------
- */
+// /**
+//  * ---------------------------------------------------------------------------------
+//  */
+// /**
+//  * --------------------   Mine Codes & Schemas      --------------------------------
+//  */
+// /**
+//  * ---------------------------------------------------------------------------------
+//  */
 
 model Person {
   id             String        @id @default(auto()) @map("_id") @db.ObjectId
@@ -128,13 +128,13 @@ model Appointment {
   // Person   Person? @relation(fields: [person_id], references: [id])
 }
 
-/**
- * const personWithRooms = await prisma.person.findUnique({
- * where: { id: "personId" },
- * include: { reservedRooms: true },
- * });
- * const roomWithPerson = await prisma.room.findUnique({
- * where: { id: "roomId" },
- * include: { reserved_by: true },
- * });
- */
+// /**
+//  * const personWithRooms = await prisma.person.findUnique({
+//  * where: { id: "personId" },
+//  * include: { reservedRooms: true },
+//  * });
+//  * const roomWithPerson = await prisma.room.findUnique({
+//  * where: { id: "roomId" },
+//  * include: { reserved_by: true },
+//  * });
+//  */
