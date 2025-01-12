@@ -23,4 +23,8 @@ export class RoomController {
   async signup(@Body() body: null) {
     return this.roomService.getRooms();
   }
+  @Post('/x')
+  async addNewRoom(@Body() body: null) {
+    return this.roomService.addRooms();
+  }
 }

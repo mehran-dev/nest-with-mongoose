@@ -9,4 +9,15 @@ export class RoomService {
     const rooms = await this.prismaService.room.findMany({});
     return rooms;
   };
+
+  addRooms = async () => {
+    const rooms = await this.prismaService.room.create({
+      data: {
+        location: 'RM3#WithBetter$fnzIndeed',
+        name: 'New Room',
+        personId: '123456789012345678941256',
+      },
+    });
+    return rooms;
+  };
 }
