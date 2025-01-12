@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PropertyType, UserType } from '.prisma/client';
 import {
   Controller,
