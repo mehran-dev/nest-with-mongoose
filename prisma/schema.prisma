@@ -110,7 +110,7 @@ model Room {
   name         String
   location     String
   appointments Appointment[] @relation("RoomAppointments")
-  personId     String        @db.ObjectId
+  //   personId     String        @db.ObjectId
 }
 
 model Appointment {

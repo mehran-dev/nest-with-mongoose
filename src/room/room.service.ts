@@ -15,7 +15,7 @@ export class RoomService {
       data: {
         location: 'RM3#WithBetter$fnzIndeed',
         name: 'New Room',
-        personId: '123456789012345678941256',
+        // personId: '123456789012345678941256',
       },
     });
     return rooms;

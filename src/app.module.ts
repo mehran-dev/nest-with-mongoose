@@ -9,9 +9,10 @@ import { UserInterceptor } from './user/interceptors/user.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { RoomService } from './room/room.service';
 import { RoomModule } from './room/room.module';
+import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, HomeModule, RoomModule],
+  imports: [UserModule, PrismaModule, HomeModule, RoomModule, AppointmentModule],
   controllers: [AppController],
   providers: [
     AppService,
