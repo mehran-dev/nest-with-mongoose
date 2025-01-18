@@ -68,7 +68,7 @@ export class HomeService {
     }
 
     return homes.map((home) => {
-      const fetchHome = { ...home, image: home.images[0].url };
+      const fetchHome = { ...home, image: home.images?.[0]?.url || '' };
       delete fetchHome.images;
       return new HomeResponseDto(fetchHome);
     });
