@@ -9,5 +9,4 @@ export class CreateAppointmentDto {
   updated_at: Date;
   start_time: string;
   end_time: string;
-  person_id: string;
 }
