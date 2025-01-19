@@ -1,7 +1,6 @@
 import { PropertyType } from '.prisma/client';
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { HomeService, homeSelect } from './home.service';
 
 const mockGetHomes = [
@@ -24,25 +23,13 @@ const mockGetHomes = [
 
 describe('HomeService', () => {
   let service: HomeService;
-  let prismaService: PrismaService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        HomeService,
-        {
-          provide: PrismaService,
-          useValue: {
-            home: {
-              findMany: jest.fn().mockReturnValue(mockGetHomes),
-            },
-          },
-        },
-      ],
+      providers: [HomeService],
     }).compile();
 
     service = module.get<HomeService>(HomeService);
-    prismaService = module.get<PrismaService>(PrismaService);
   });
 
   describe('getHomes', () => {
@@ -57,10 +44,6 @@ describe('HomeService', () => {
 
     it('should call prisma home.findMany with correct params', async () => {
       const mockPrismaFindManyHomes = jest.fn().mockReturnValue(mockGetHomes);
-
-      jest
-        .spyOn(prismaService.home, 'findMany')
-        .mockImplementation(mockPrismaFindManyHomes);
 
       await service.getHomes(filters);
 
@@ -80,10 +63,6 @@ describe('HomeService', () => {
 
     it('', async () => {
       const mockPrismaFindManyHomes = jest.fn().mockReturnValue([]);
-
-      jest
-        .spyOn(prismaService.home, 'findMany')
-        .mockImplementation(mockPrismaFindManyHomes);
 
       await expect(service.getHomes(filters)).rejects.toThrowError(
         NotFoundException,

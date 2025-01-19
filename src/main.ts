@@ -2,8 +2,11 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import connectToDatabase from './models/mongod';
+// require('dotenv').config(); // Load environment variables from .env
 
 async function bootstrap() {
+  await connectToDatabase();
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(
     new ValidationPipe({
@@ -27,6 +30,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document); // Access Swagger at /api
 
+  // Connect to MongoDB
   await app.listen(8000);
 }
 bootstrap();

@@ -1,8 +1,9 @@
 import { Injectable, ConflictException, HttpException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { UserType } from '@prisma/client';
+import { User } from 'src/models/models';
 
 interface SignupParams {
   email: string;
@@ -18,13 +19,11 @@ interface SigninParams {
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prismaService: PrismaService) {}
-
   async signup(
     { email, password, name, phone }: SignupParams,
     userType: UserType,
   ) {
-    const userExists = await this.prismaService.user.findUnique({
+    const userExists = await User.findOne({
       where: {
         email,
       },
@@ -36,24 +35,20 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await this.prismaService.user.create({
-      data: {
-        email,
-        name,
-        phone: phone,
-        password: hashedPassword,
-        user_type: userType,
-      },
+    const user = await User.create({
+      email,
+      name,
+      phone: phone,
+      password: hashedPassword,
+      user_type: userType,
     });
 
     return this.generateJWT(name, user.id);
   }
 
   async signin({ email, password }: SigninParams) {
-    const user = await this.prismaService.user.findUnique({
-      where: {
-        email,
-      },
+    const user = await User.findOne({
+      email,
     });
 
     if (!user) {

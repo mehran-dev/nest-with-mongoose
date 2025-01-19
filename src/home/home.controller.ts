@@ -83,10 +83,10 @@ export class HomeController {
     return this.homeService.getHomeById(id);
   }
 
-  @Roles(UserType.REALTOR)
   @Post()
+  @Roles(UserType.REALTOR, UserType.ADMIN)
   createHome(@Body() body: CreateHomeDto, @User() user: UserInfo) {
-    return this.homeService.createHome(body, user.id);
+    return this.homeService.createHome(body, user._id);
   }
 
   @Roles(UserType.REALTOR)
