@@ -125,13 +125,13 @@ export class HomeService {
       realtor_id: userId,
     });
 
-    const homeImages = images.map((image) => {
-      return { ...image, home_id: home.id };
-    });
+    // const homeImages = images.map((image) => {
+    //   return { ...image, home_id: home.id };
+    // });
 
-    await Image.create({
-      data: homeImages,
-    });
+    // await Image.create({
+    //   data: homeImages,
+    // });
 
     return new HomeResponseDto(home);
   }

@@ -30,14 +30,20 @@ export class AuthGuard implements CanActivate {
         )) as JWTPayload;
 
         const user = await User.findOne({
-          id: payload.id,
+          _id: payload.id,
         });
 
+        console.log('====================================');
+        console.log(user);
+        console.log('====================================');
         if (!user) return false;
         if (roles.includes(user.user_type)) return true;
 
         return false;
       } catch (error) {
+        console.log('====================================');
+        console.log(error);
+        console.log('====================================');
         return false;
       }
     }
